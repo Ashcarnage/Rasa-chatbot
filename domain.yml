@@ -1,0 +1,90 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- show_school_vd:
+    use_entities: true
+- class_name:
+    use_entities: true
+- seek_timetable_help:
+    use_entities: true
+- greet:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- mood_great:
+    use_entities: true
+- mood_unhappy:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+entities:
+- class
+slots:
+  class:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+responses:
+  utter_timetable_val:
+  - text: |
+      Here is the Time Table for {class}
+  utter_feedback:
+  - text: Was that all?
+  - text: Was that helpfull?
+  - text: Do you need something else?
+  utter_intro:
+  - text: Hi there , Welcome to the School interactive plateform. What can I help you with?
+  utter_doubtshoot:
+  - text: ohh :( What can i do to help?
+  utter_class_info:
+  - text: which class do you study in?
+  - text: what is your class?
+  utter_agreement:
+  - text: yea sure
+  - text: okay,here is what i found
+  - text: sure!
+  utter_greet:
+  - text: Hey! How are you?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: 'Here is something to cheer you up:'
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye
+  utter_iamabot:
+  - text: I am a SCHOOL bot, made to ease the conversation!.
+actions:
+- show_timetable
+- school_vd
+- utter_doubtshoot
+- utter_timetable_val
+- utter_feedback
+- utter_intro
+- utter_class_info
+- utter_agreement
+- class_form
+- action_submit
+forms:
+  class_form:
+    required_slots:
+      class:
+      - entity: class
+        type: from_entity
+e2e_actions: []

@@ -1,0 +1,39 @@
+version: "2.0"
+
+stories:
+  - story: class identification
+    steps:
+    - intent: greet
+    - action: utter_intro
+    - intent: seek_timetable_help
+    - action: utter_class_info
+    - intent: class_name
+      entities:
+      - class: "12B"
+    - slot_was_set:
+      - class: "12B"
+    - action: utter_timetable_val
+    - action: show_timetable
+    - action: utter_feedback
+    - intent: affirm
+    - action: utter_goodbye  
+
+  - story: video_player_happy
+    steps:
+    - intent: greet
+    - action: utter_intro
+    - intent: show_school_vd
+    - action: school_vd
+    - action: utter_did_that_help
+    - intent: affirm
+    - action: utter_goodbye  
+
+  - story: video_player_sad
+    steps:
+    - intent: greet
+    - action: utter_intro
+    - intent: show_school_vd
+    - action: school_vd
+    - action: utter_did_that_help
+    - intent: deny
+    - action: utter_doubtshoot
