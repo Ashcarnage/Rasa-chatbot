@@ -5,6 +5,8 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- Out_of_scope:
+    use_entities: true
 - show_school_vd:
     use_entities: true
 - class_name:
@@ -25,6 +27,8 @@ intents:
     use_entities: true
 - bot_challenge:
     use_entities: true
+- nlu_fallback:
+    use_entities: true
 entities:
 - class
 slots:
@@ -39,6 +43,13 @@ slots:
     auto_fill: true
     influence_conversation: false
 responses:
+  utter_out_of_scope:
+  - text: |
+      Hmmm, good question!
+
+      Sorry, I can't seem to find the right answer for you.
+
+      If you don't mind , can you please retry
   utter_timetable_val:
   - text: |
       Here is the Time Table for {class}
@@ -46,8 +57,14 @@ responses:
   - text: Was that all?
   - text: Was that helpfull?
   - text: Do you need something else?
+  - text: Anything else I can help you with today?
   utter_intro:
-  - text: Hi there , Welcome to the School interactive plateform. What can I help you with?
+  - buttons:
+    - payload: /seek_timetable_help
+      title: Timetable
+    - payload: /school_vd
+      title: school video
+    text: Hi there!! , Welcome to the School interactive plateform. What can I help you with today?
   utter_doubtshoot:
   - text: ohh :( What can i do to help?
   utter_class_info:
@@ -67,10 +84,14 @@ responses:
   utter_happy:
   - text: Great, carry on!
   utter_goodbye:
-  - text: Bye
+  - text: Sounds good to me
   utter_iamabot:
   - text: I am a SCHOOL bot, made to ease the conversation!.
+  utter_end:
+  - text: okay! see you later
 actions:
+- intro_direction
+- utter_out_of_scope
 - show_timetable
 - school_vd
 - utter_doubtshoot
@@ -81,6 +102,7 @@ actions:
 - utter_agreement
 - class_form
 - action_submit
+- utter_end
 forms:
   class_form:
     required_slots:

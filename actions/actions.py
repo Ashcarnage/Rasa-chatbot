@@ -13,6 +13,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import SlotSet, EventType
 import webbrowser
+
 class ValidateSchoolForm(Action):
     def name(self) -> Text:
         return "class_form"
@@ -52,13 +53,22 @@ class Actionvideo(Action):
         webbrowser.open(url)
         return []
 
+class ActionIntro(Action):
+    def name(self) -> Text:
+       return "intro_direction"
+
+    def run(self, dispatcher: "CollectingDispatcher", tracker: Tracker, domain: "DomainDict") -> List[Dict[Text, Any]]:
+        dispatcher.utter_message(template="utter_intro")
+        
+        return []
+
 
 class timetablepic(Action):
     def name(self) -> Text:
         return "show_timetable"
     def run(self, dispatcher: "CollectingDispatcher", tracker: Tracker, domain: "DomainDict") -> List[Dict[Text, Any]]:
         name=tracker.get_slot("class")
-        D={"12A":"https://i.imgur.com/ryzkY6I.jpeg","12B":"https://i.imgur.com/rR3zZAm.jpeg"}
+        D={"12A":"https://i.imgur.com/ryzkY6I.jpeg","12B":"https://i.imgur.com/rR3zZAm.jpeg","12C":"","12D":"","11A":"","11B":"","11C":"","11D":""}
         for dict in D.keys(): 
             print(name)
             if name==dict:

@@ -2,10 +2,16 @@ version: "2.0"
 
 rules:
 
+- rule: primary buttons to choose from
+  conversation_start: true
+  steps:
+  - action: intro_direction
+
 - rule: Say "Great carry on!" anytime the user says "yes" affermingly
   steps:
   - intent: affirm
   - action: utter_goodbye
+  - action: utter_feedback
 
 - rule: Say goodbye anytime the user says goodbye
   steps:
@@ -16,6 +22,11 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+- rule: out of scope
+  steps:
+  - intent: nlu_fallback
+  - action: utter_out_of_scope
 
 #- rule: activate form
 #  steps:

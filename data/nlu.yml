@@ -93,6 +93,7 @@ nlu:
     - what is the timetable for class [12C](class) ?
     - what is the timetable for class [12D](class) ?
     - can you give the timetable?
+    - /seek_timetable_help
 - intent: class_name
   examples: |
     - I study in class [12A](class)
@@ -111,3 +112,11 @@ nlu:
   examples: |
     - can you show an overview of ISG
     - can you show a video on ISG
+- intent: Out_of_scope
+  examples: |
+    - can you open WhatsApp web
+    - can you write me a wonderful quote
+    - why are you so rude
+    - i hate you
+    - what match is going on
+    - tell me a story
