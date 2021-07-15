@@ -1,9 +1,6 @@
 version: "2.0"
 stories:
-- story: intro
-  steps:
-  - action: utter_intro
-- story: class identification happy
+- story: class identification
   steps:
   - intent: greet
   - action: utter_intro
@@ -39,19 +36,111 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_doubtshoot
-- story: class identification sad
+- story: admission details with contacts and fees - happy
   steps:
   - intent: greet
   - action: utter_intro
-  - intent: seek_timetable_help
-  - action: utter_class_info
-  - intent: class_name
-    entities:
-    - class: 12B
-  - slot_was_set:
-    - class: 12B
-  - action: utter_timetable_val
-  - action: show_timetable
+  - intent: show_admission_details
+  - action: utter_admission_details
+  - action: utter_related_details_1
+- story: Exam date sheet
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: exam_date_sheet
+  - action: utter_exam_dates
+  - action: utter_Edate_pg1
+  - action: utter_did_that_help
+- story: fees happy
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: fee_structure
+  - action: utter_fee_structure
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
+  - action: utter_feedback
+  - intent: show_intro
+  - action: utter_show_options
+- story: fees_terminate
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: fee_structure
+  - action: utter_fee_structure
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
   - action: utter_feedback
   - intent: deny
   - action: utter_end
+- story: calendar_happy
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: academic_calendar
+  - action: utter_which_year
+  - intent: year
+    entities:
+    - year: '2021'
+  - slot_was_set:
+    - year: '2021'
+  - action: utter_which_month
+  - intent: year
+    entities:
+    - month: January
+  - slot_was_set:
+    - month: January
+  - action: academic_calendar
+  - action: utter_related_details_2
+- story: calendar_diff
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: academic_calendar
+  - action: utter_which_year
+  - intent: year
+    entities:
+    - year: '2021'
+  - slot_was_set:
+    - year: '2021'
+  - action: utter_which_month
+  - intent: year
+    entities:
+    - month: January
+  - slot_was_set:
+    - month: January
+  - action: academic_calendar
+  - action: utter_related_details_2
+  - intent: show_intro
+  - action: utter_agreement
+  - action: utter_show_options
+- story: Story from Conversation ID 5c15ae792ee248c0b005c28cc5551141
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: academic_calendar
+  - action: utter_which_year
+  - intent: year
+    entities:
+    - year: '2022'
+  - slot_was_set:
+    - year: '2022'
+  - action: utter_which_month
+  - intent: month
+    entities:
+    - month: January
+  - slot_was_set:
+    - year: '2022'
+  - slot_was_set:
+    - month: January
+  - action: academic_calendar
+  - action: utter_related_details_2
+- story: Story from Conversation ID eb8ae7660d914d2ca0f544e990456c34
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: school_vd
+  - action: school_vd
+  - action: utter_did_that_help
