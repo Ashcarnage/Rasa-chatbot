@@ -5,6 +5,18 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- show_intro:
+    use_entities: true
+- academic_calendar:
+    use_entities: true
+- exam_date_sheet:
+    use_entities: true
+- show_admission_details:
+    use_entities: true
+- fee_structure:
+    use_entities: true
+- contact_details:
+    use_entities: true
 - Out_of_scope:
     use_entities: true
 - show_school_vd:
@@ -29,19 +41,34 @@ intents:
     use_entities: true
 - nlu_fallback:
     use_entities: true
+- fee_stricture:
+    use_entities: true
+- year:
+    use_entities: true
+- month:
+    use_entities: true
+- school_vd:
+    use_entities: true
 entities:
 - class
+- month
+- year
 slots:
   class:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
     influence_conversation: true
-  requested_slot:
-    type: rasa.shared.core.slots.UnfeaturizedSlot
+  month:
+    type: rasa.shared.core.slots.TextSlot
     initial_value: null
     auto_fill: true
-    influence_conversation: false
+    influence_conversation: true
+  year:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
 responses:
   utter_out_of_scope:
   - text: |
@@ -54,17 +81,60 @@ responses:
   - text: |
       Here is the Time Table for {class}
   utter_feedback:
-  - text: Was that all?
-  - text: Was that helpfull?
   - text: Do you need something else?
   - text: Anything else I can help you with today?
-  utter_intro:
+  utter_show_options:
   - buttons:
+    - payload: /Exam_date_sheet
+      title: Exam Timetable
+    - payload: /show_admission_details
+      title: Admission details
+    - payload: /fee_structure
+      title: School fees
+    - payload: /contact_details
+      title: Contacts
     - payload: /seek_timetable_help
       title: Timetable
-    - payload: /school_vd
+    - payload: /show_school_vd
       title: school video
+    - payload: /academic_calendar
+      title: Academic calendar 2020-21
+    text: You can access and choose different sections from here!!
+  utter_intro:
+  - buttons:
+    - payload: /Exam_date_sheet
+      title: Exam Timetable
+    - payload: /show_admission_details
+      title: Admission details
+    - payload: /fee_structure
+      title: School fees
+    - payload: /contact_details
+      title: Contacts
+    - payload: /seek_timetable_help
+      title: Timetable
+    - payload: /show_school_vd
+      title: school video
+    - payload: /academic_calendar
+      title: Academic calendar 2020-21
     text: Hi there!! , Welcome to the School interactive plateform. What can I help you with today?
+  utter_greet2:
+  - text: Hi there!! , Welcome to the School interactive plateform. What can I help you with today?
+  utter_academic_calendar:
+  - text: |
+      Here's the calendar for the month {month} the year {year}.
+  utter_which_month:
+  - text: Hmm... I need to know which month you would like to see!
+  - text: Can you tell me which month would you like to see in the calendar.
+  utter_which_year:
+  - text: which year's calendar do you want to see?
+  - text: Can you provide the year ?
+  utter_related_details_2:
+  - buttons:
+    - payload: /exam_date_sheet
+      title: Exam dates
+    - payload: /show_admission_details
+      title: Admission details
+    text: In need for related details ... Check this out!
   utter_doubtshoot:
   - text: ohh :( What can i do to help?
   utter_class_info:
@@ -76,21 +146,61 @@ responses:
   - text: sure!
   utter_greet:
   - text: Hey! How are you?
+  utter_admission_details:
+  - image: https://i.imgur.com/vnHjq5Q.png
+    text: Here's some details regarding admissions
+  utter_related_details_1:
+  - buttons:
+    - payload: /fee_structure
+      title: School Fees
+    - payload: /contact_details
+      title: Email ids of school officials
+    text: In need for related details ... Check this out!
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: 'Here is something to cheer you up:'
+  utter_fee_structure:
+  - text: hmmm here's the Fee schedule for 2021-22
+  - text: |
+      For remittance of fees our bank details are as follows
+      Online banking/Bill payments/Add New/Select-XYZ International School
+  - text: for other banks..
+  utter_contact_details:
+  - text: Here are the contact details..
   utter_did_that_help:
   - text: Did that help you?
+  - text: was the useful?
+  - text: Do you need something else?
   utter_happy:
   - text: Great, carry on!
   utter_goodbye:
   - text: Sounds good to me
+  - text: Thats Great!!
   utter_iamabot:
   - text: I am a SCHOOL bot, made to ease the conversation!.
   utter_end:
-  - text: okay! see you later
+  - text: okay! see you later. Have a good one!
+  - text: Alight! hope you got everything you need :)
+  - text: OHH Great! Hope to see you again soon
+  utter_Edate_pg1:
+  - image: https://i.imgur.com/8Cqy1LN.png
+    text: Pg2
+  utter_exam_dates:
+  - image: https://i.imgur.com/xOQ9o2v.png
+    text: Here's the exam date sheet for the academic year 2021-22
 actions:
-- intro_direction
+- utter_show_options
+- academic_calendar
+- utter_which_year
+- utter_which_month
+- utter_academic_calendar
+- utter_related_details_2
+- utter_Edate_pg1
+- utter_exam_dates
+- utter_greet2
+- utter_admission_details
+- utter_fee_structure
+- utter_contact_details
 - utter_out_of_scope
 - show_timetable
 - school_vd
@@ -103,10 +213,17 @@ actions:
 - class_form
 - action_submit
 - utter_end
+- intro_directions
 forms:
   class_form:
     required_slots:
       class:
       - entity: class
+        type: from_entity
+      month:
+      - entity: month
+        type: from_entity
+      year:
+      - entity: year
         type: from_entity
 e2e_actions: []
