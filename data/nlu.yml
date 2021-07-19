@@ -39,6 +39,7 @@ nlu:
     - yes very much
 - intent: deny
   examples: |
+    - no thanks
     - no
     - n
     - never
@@ -100,7 +101,6 @@ nlu:
     - I study in class [12B](class)
     - I study in class [12C](class)
     - I study in class [12D](class)
-    - [12A](class)
     - [12B](class)
     - [12C](class)
     - [12D](class)
@@ -108,6 +108,63 @@ nlu:
     - im in class [12B](class)
     - im in class [12C](class)
     - im in class [12D](class)
+# - intent: class_name_2
+#   examples: |
+#     - [12A](class)
+#     - I study in class [12A](class)
+#     - I study in class [12B](class)
+#     - I study in class [12C](class)
+#     - I study in class [12D](class)
+#     - [12A](class)
+#     - [12B](class)
+#     - [12C](class)
+#     - [12D](class)
+#     - im in class [12A](class)
+#     - im in class [12B](class)
+#     - im in class [12C](class)
+#     - im in class [12D](class)
+# - intent: class_name_1
+#   examples: |
+#     - I study in class [12A](class)
+#     - I study in class [12B](class)
+#     - I study in class [12C](class)
+#     - I study in class [12D](class)
+#     - [12A](class)
+#     - [12B](class)
+#     - [12C](class)
+#     - [12D](class)
+#     - im in class [12A](class)
+#     - im in class [12B](class)
+#     - im in class [12C](class)
+#     - im in class [12D](class)
+# - intent: class_name_3
+#   examples: |
+#     - I study in class [12A](class)
+#     - I study in class [12B](class)
+#     - I study in class [12C](class)
+#     - I study in class [12D](class)
+#     - [12A](class)
+#     - [12B](class)
+#     - [12C](class)
+#     - [12D](class)
+#     - im in class [12A](class)
+#     - im in class [12B](class)
+#     - im in class [12C](class)
+#     - im in class [12D](class)
+# - intent: class_name_4
+#   examples: |
+#     - I study in class [12A](class)
+#     - I study in class [12B](class)
+#     - I study in class [12C](class)
+#     - I study in class [12D](class)
+#     - [12A](class)
+#     - [12B](class)
+#     - [12C](class)
+#     - [12D](class)
+#     - im in class [12A](class)
+#     - im in class [12B](class)
+#     - im in class [12C](class)
+#     - im in class [12D](class)
 - intent: show_school_vd
   examples: |
     - can you give an insight on XYZ
@@ -131,13 +188,14 @@ nlu:
     - what's the fee structure of XYZ?
     - What's the cost of studying in XYZ?
     - what is the fees ?
+- intent: school_contact_details
+  examples: |
+    - Can i have the schools contact number please
+    - can you give me the school's contact details please?
+    - what is the School's mail id ?
 - intent: contact_details
   examples: |
-    - Do you have the contact details of the school administration
-    - Could you provide me with all contacts of the school
-    - contact details
-    - can i have the email ids of all teachers
-    - email ids
+    - /contact_details
 - intent: exam_date_sheet
   examples: |
     - please show me the exam dates
@@ -181,3 +239,217 @@ nlu:
     - what are the catagories
     - can you give the intro again
     - yea can you give a few options
+- intent: report_card
+  examples: |
+    - Please show my report card
+    - show me my child's marksheet
+    - Periodic test results
+    - marksheet of half yearly exam
+    - kindly show me final exam report card
+    - is it possible to view my child's report card?
+    - is it possible to view my child's marksheet?
+    - could you send email of report card?
+    - could you send email of mark sheet?
+    - periodic test result
+- intent: zoom_details
+  examples: |
+    - What is the zoom details of [12A](class)?
+    - What is the zoom details of [12B](class)?
+    - What is the zoom details of [12C](class)?
+    - What is the zoom details of [12D](class)?
+    - What is the zoom details of [12E](class)?
+    - Could you tell me the zoom id for class [11A](class)?
+    - Could you tell me the zoom id for class [11B](class)?
+    - Could you tell me the zoom id for class [11C](class)?
+    - Could you tell me the zoom id for class [11D](class)?
+    - Could you tell me the zoom id for class [11E](class)?
+    - show me my class zoom id
+    - what is the zoom details of class [12D](class)?
+    - zoom id for class [11A](class)
+    - what is the zoom details of [12C](class)?
+    - could you show me zoom ids
+    - show me my class zoom details
+    - Do you have the contact details of the school administration
+- intent: email_details
+  examples: |
+    - Please tell me the email id of my teachers
+    - could you tell me the email address of teachers of class [11A](class)?
+    - could you tell me the email address of teachers of class [11B](class)?
+    - could you tell me the email address of teachers of class [11C](class)?
+    - could you tell me the email address of teachers of class [11D](class)?
+    - could you tell me the email address of teachers of class [11E](class)?
+    - could you tell me the email address of teachers of class [12A](class)?
+    - could you tell me the email address of teachers of class [12B](class)?
+    - could you tell me the email address of teachers of class [12C](class)?
+    - could you tell me the email address of teachers of class [12D](class)?
+    - could you tell me the email address of teachers of class [12E](class)?
+- intent: exam_syllabus
+  examples: |
+    - What is [preboard](exam) syllabus for [Maths](subject1)?
+    - Show me [periodic](exam) test syllabus
+    - class [11A](class) [physics](subject1) syllabus for [half yearly](exam)
+    - [final](exam) exam syllabus of class [11](class)
+    - [preboard](exam) syllabus of [phy](subject1) class [12](class)
+    - [final](exam) exam syllabus for class [11B](class)
+    - exam syllabus for class [11](class)
+    - exam syllabus for class [12](class)
+    - exam syllabus for class [11A](class)
+    - exam syllabus for class [11B](class)
+    - exam syllabus for class [11C](class)
+    - exam syllabus for class [11D](class)
+    - exam syllabus for class [11E](class)
+    - exam syllabus for class [12A](class)
+    - exam syllabus for class [12B](class)
+    - exam syllabus for class [12C](class)
+    - exam syllabus for class [12D](class)
+    - exam syllabus for class [12E](class)
+    - /exam_syllabus{"exam":"periodic"}
+    - /exam_syllabus{"exam":"final"}
+    - /exam_syllabus{"subject1":"cs"}
+    - [final](exam) exam syllabus
+    - [11](class)
+    - /exam_syllabus{"subject1":"maths"}
+    - [mathematics](subject1) class [11](class) [final](exam) exam syllabus
+    - [math](subject1)
+    - [chem](subject1)
+    - [chemistry](subject1)
+    - [eng](subject1)
+    - [english](subject1)
+    - [cs](subject1)
+    - [computer science](subject1)
+    - [comp science](subject1)
+    - [compsci](subject1)
+    - [periodic](exam)
+    - [periodic test](exam)
+    - [periodic exam](exam)
+    - [half yearly](exam)
+    - [halfyearly](exam)
+    - [half yearly exam](exam)
+    - [final](exam)
+    - [final exam](exam)
+    - [final test](exam)
+    - [preboard](exam)
+    - [pre board](exam)
+    - [mock test](exam)
+    - [mock exam](exam)
+    - [final](exam) exam syllabus for class [11](class)
+    - class [11](class) [physics](subject1) syllabus
+    - [physics](subject1) class [11](class) [final](exam) exam syllabus
+    - [maths](subject1) class [11](class) [final](exam) exam syllabus
+    - exam syllabus
+    - exam syllabus for [11B](class)
+
+- intent: other_contacts
+  examples: |
+    - give me all contact numbers
+    - contact school
+- intent: send_email
+  examples: |
+    - I want to send an email to
+    - send email
+    - How can i send an email
+- intent: mail_id_email
+  examples: |
+    - [xyzinternational@gmail.com](email)
+    - [bhakat2004@gmail.com](email)
+    - the email is [principalxyzschool@gmail.com](email)
+- intent: mail_id_subject
+  examples: |
+    - [participation in a competetion](subject)
+    - [participation](subject)
+    - [To take a tc](subject)
+- intent: mail_id_message
+  examples: |
+    - [Hello this is a meesage from the xyz chatbot](message)
+    - [I want to take part in the upcoming competetion](message)
+- intent: leave_id_message
+  examples: |
+    - [Im having sever cough and cold and so i will not be able to attend school for 2 days](message)
+    - [Due to the rapid spread of the covid 19 virus, i will be able to come for schooling for atleast a weeks time](message)
+    - [Since im having a competative exam tomorrow i will not be coming](message)
+- intent: contact_principal
+  examples: |
+    - I want to contact the principal
+    - can i email the principal
+    - The principal
+- intent: nlu_fallback
+  examples: |
+    - hello this message is from a bot
+- intent: principal_go
+  examples: |
+    - email now
+    - email principal
+    - lets get on with the email
+
+- intent: Leave_go
+  examples: |
+    - send leave note now
+    - please send the leave letter
+    - email leave note now
+
+- intent: Leave_application
+  examples: |
+    - I want to write a leave application
+    - Can i write a leave note
+    - leave note
+    - leave application
+    - i want to take a leave
+
+
+- intent: upcoming_events_ask
+  examples: |
+    - could you tell me more about the upcoming events?
+    - what are the next [mun](event)?
+    - are there any competitions where can participate ?
+    - what all events can i take part in?
+    - upcoming events
+- intent: upcoming_events
+  examples: |
+    - [mun](event)
+    - [fest](event)
+    - [quiz](event)
+    - [art](event)
+- intent: event_contact
+  examples: |
+    - who can i contact to know more about [mun](event)?
+    - details of roundsquare conference
+    - details of the talent fest
+    - contact details of the art competition
+    - who should i ask for more details on founder's day?
+    - which teacher should i ask to know more about sport's day?
+    - can i have the contacts for events
+- synonym: periodic
+  examples: |
+    - periodic test
+    - periodic exam
+- synonym: half yearly
+  examples: |
+    - halfyearly
+    - half yearly exam
+- synonym: final
+  examples: |
+    - final exam
+    - final test
+- synonym: preboard
+  examples: |
+    - pre board
+    - mock test
+    - mock exam
+- synonym: phy
+  examples: |
+    - physics
+- synonym: maths
+  examples: |
+    - mathematics
+    - math
+- synonym: chem
+  examples: |
+    - chemistry
+- synonym: eng
+  examples: |
+    - english
+- synonym: cs
+  examples: |
+    - computer science
+    - compsci
+    - comp science

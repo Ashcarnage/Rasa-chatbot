@@ -1,6 +1,6 @@
 version: "2.0"
 stories:
-- story: class identification
+- story: timetable
   steps:
   - intent: greet
   - action: utter_intro
@@ -56,6 +56,14 @@ stories:
   - intent: greet
   - action: utter_intro
   - intent: fee_structure
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
+  - action: utter_fee_structure
+  - action: school_fees
   - action: utter_fee_structure
   - action: utter_did_that_help
   - intent: affirm
@@ -68,7 +76,14 @@ stories:
   - intent: greet
   - action: utter_intro
   - intent: fee_structure
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
   - action: utter_fee_structure
+  - action: school_fees
   - action: utter_did_that_help
   - intent: affirm
   - action: utter_goodbye
@@ -94,6 +109,8 @@ stories:
     - month: January
   - action: academic_calendar
   - action: utter_related_details_2
+  - intent: show_admission_details
+  - action: utter_admission_details
 - story: calendar_diff
   steps:
   - intent: greet
@@ -132,8 +149,6 @@ stories:
     entities:
     - month: January
   - slot_was_set:
-    - year: '2022'
-  - slot_was_set:
     - month: January
   - action: academic_calendar
   - action: utter_related_details_2
@@ -144,3 +159,344 @@ stories:
   - intent: school_vd
   - action: school_vd
   - action: utter_did_that_help
+- story: Exam syllabus sad
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: exam_syllabus
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
+  - action: utter_exam
+  - intent: exam_syllabus
+    entities:
+    - exam: periodic
+  - slot_was_set:
+    - exam: periodic
+  - action: utter_which_subject
+  - intent: exam_syllabus
+    entities:
+    - subject: Maths
+  - slot_was_set:
+    - subject: Maths
+  - action: show_exam
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
+  - action: utter_feedback
+  - intent: deny
+  - action: utter_end
+- story: Exam syllabus diff
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: exam_syllabus
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
+  - action: utter_exam
+  - intent: exam_syllabus
+    entities:
+    - exam: periodic
+  - slot_was_set:
+    - exam: periodic
+  - action: utter_which_subject
+  - intent: exam_syllabus
+    entities:
+    - subject: Maths
+  - slot_was_set:
+    - subject: Maths
+  - action: show_exam
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
+  - action: utter_feedback
+  - intent: show_intro
+  - action: utter_show_options
+- story: zoom class
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: zoom_details
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
+  - action: utter_zoom_details
+  - action: show_zoom
+  - action: utter_dont_share
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
+  - action: utter_feedback
+  - intent: show_intro
+  - action: utter_show_options
+- story: Email id (contacts)-diff
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: email_details
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
+  - action: utter_email_ids
+  - action: show_email_ids
+  - action: utter_related_details_5
+  - intent: zoom_details
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
+  - action: utter_zoom_details
+  - action: show_zoom
+  - action: utter_dont_share
+  - action: utter_did_that_help
+- story: Email id (contacts)-deny
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: email_details
+  - action: utter_class_info
+  - intent: class_name_4
+    entities:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
+  - action: utter_email_ids
+  - action: show_email_ids
+  - action: utter_related_details_5
+  - intent: deny
+  - action: utter_feedback
+  - intent: deny
+  - action: utter_end
+- story: Contact_details-(other..)
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: school_contact_details
+  - action: utter_contact_who
+  - intent: other_contacts
+  - action: school_contacts
+  - action: utter_related_details_5
+  - intent: deny
+  - action: utter_feedback
+  - intent: deny
+  - action: utter_end
+- story: Contact_details-(principal)-sad
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: school_contact_details
+  - action: utter_contact_who
+  - intent: contact_principal
+  - action: utter_principal_email
+  - action: utter_message_now
+  - intent: deny
+  - action: utter_feedback
+  - intent: deny
+  - action: utter_end
+- story: Contact_details-(principal)-Happy
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: school_contact_details
+  - action: utter_contact_who
+  - intent: contact_principal
+  - action: utter_principal_email
+  - action: utter_message_now
+  - intent: principal_go
+  - action: utter_provide_id
+  - intent: mail_id_email
+    entities:
+    - email: bhakat2004@gmail.com
+  - slot_was_set:
+    - email: bhakat2004@gmail.com
+  - action: utter_provide_subject
+  - intent: mail_id_subject
+    entities:
+    - subject: participation
+  - slot_was_set:
+    - subject: participation
+  - action: utter_provide_message
+  - intent: mail_id_message
+    entities:
+    - message: Hello this is a meesage from the xyz chatbot
+  - slot_was_set:
+    - message: Hello this is a meesage from the xyz chatbot
+  - action: email_submit
+  - action: utter_your_email_sent
+  - action: utter_did_that_help
+- story: sending email
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: send_email
+  - action: utter_provide_id
+  - intent: mail_id_email
+  - action: utter_provide_id
+  - intent: mail_id_email
+    entities:
+    - email: bhakat2004@gmail.com
+  - slot_was_set:
+    - email: bhakat2004@gmail.com
+  - action: utter_provide_subject
+  - intent: mail_id_subject
+    entities:
+    - subject: participation
+  - slot_was_set:
+    - subject: participation
+  - action: utter_provide_message
+  - intent: mail_id_message
+    entities:
+    - message: Hello this is a meesage from the xyz chatbot
+  - slot_was_set:
+    - message: Hello this is a meesage from the xyz chatbot
+  - action: email_submit
+  - action: utter_your_email_sent
+  - action: utter_related_details_4
+  - intent: exam_syllabus
+- story: Report card
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: report_card
+  - action: utter_agreement
+  - action: show_report_card
+  - action: utter_related_details_4
+  - intent: exam_syllabus
+- story: event path
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: upcoming_events_ask
+  - action: utter_event
+  - intent: upcoming_events
+    entities:
+    - event: mun
+  - slot_was_set:
+    - event: mun
+  - action: show_event
+  - action: utter_related_details_3
+  - intent: event_contact
+  - action: utter_end
+  - action: utter_goodbye
+- story: event contact-sad
+  steps:
+  - intent: event_contact
+  - action: utter_event_contact
+  - action: show_event_contacts
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_doubtshoot
+- story: event contact-sad
+  steps:
+  - intent: event_contact
+  - action: utter_event_contact
+  - action: show_event_contacts
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
+  - action: utter_feedback
+- story: Leave Letter- happy
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: Leave_application
+  - action: utter_leave_proceed
+  - intent: leave_go
+  - action: utter_give_reason
+  - intent: leave_id_message
+    entities:
+    - message: Im having sever cough and cold and so i will not be able to attend school for 2 days
+  - slot_was_set:
+    - message: Im having sever cough and cold and so i will not be able to attend school for 2 days
+  - action: leave_note_submit
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
+  - action: utter_feedback
+- story: Leave Letter- sad
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: Leave_application
+  - action: utter_leave_proceed
+  - intent: deny
+  - action: utter_leave_end
+  - action: utter_feedback
+  - intent: deny
+  - action: utter_end
+- story: Story from Conversation ID 9bd768d93c0f4f959f914477ff362e2b
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: exam_syllabus
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12A
+  - slot_was_set:
+    - class: 12A
+  - action: utter_exam
+  - intent: exam_syllabus
+    entities:
+    - exam: final
+  - slot_was_set:
+    - exam: final
+  - action: utter_which_subject
+  - intent: exam_syllabus
+    entities:
+    - subject1: maths
+  - slot_was_set:
+    - class: 12A
+  - slot_was_set:
+    - exam: final
+  - slot_was_set:
+    - subject1: maths
+  - action: show_exam
+  - action: utter_did_that_help
+- story: Story from Conversation ID 4a5695754b44467e83bbc6f7c99d9c59
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: exam_syllabus
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12B
+  - slot_was_set:
+    - class: 12B
+  - action: utter_exam
+  - intent: exam_syllabus
+    entities:
+    - exam: final
+  - slot_was_set:
+    - exam: final
+  - action: utter_which_subject
+  - intent: exam_syllabus
+    entities:
+    - subject1: maths
+  - slot_was_set:
+    - class: 12B
+  - slot_was_set:
+    - exam: final
+  - slot_was_set:
+    - subject1: maths
+  - action: show_exam
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
+  - action: utter_feedback

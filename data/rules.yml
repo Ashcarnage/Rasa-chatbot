@@ -48,3 +48,9 @@ rules:
 #    - requested_slot: null
   # The actions file will run when the form is submitted
 #  - action: action_submit
+
+#- rule: Form Action
+#  steps:
+#    - intent: mail_id
+#    - action: email_submit
+#    - active_loop: email_submit
