@@ -9,10 +9,10 @@ rules:
   - action: utter_goodbye
   - action: utter_feedback
 
-#- rule: Say goodbye anytime the user says goodbye
-# steps:
-# - intent: goodbye
-# - action: utter_happy
+- rule: Say goodbye anytime the user says goodbye
+steps:
+- intent: goodbye
+- action: utter_happy
 
 - rule: Say 'I am a bot' anytime the user challenges
   steps:
@@ -54,3 +54,7 @@ rules:
 #    - intent: mail_id
 #    - action: email_submit
 #    - active_loop: email_submit
+- rule: Give options whenever user asks 
+  steps:
+  - intent: show_intro
+  - action: utter_show_options

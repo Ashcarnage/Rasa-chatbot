@@ -5,6 +5,26 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- winter_break:
+    use_entities: true
+- school_break:
+    use_entities: true
+- summer_break:
+    use_entities: true
+- school_location:
+    use_entities: true
+- school_timings:
+    use_entities: true
+- register_name:
+    use_entities: true
+- get_uniform:
+    use_entities: true
+- senior_uniform:
+    use_entities: true
+- junior_uniform:
+    use_entities: true
+- give_covid:
+    use_entities: true
 - leave_id_message:
     use_entities: true
 - leave_go:
@@ -18,12 +38,6 @@ intents:
 - mail_id_subject:
     use_entities: true
 - mail_id_message:
-    use_entities: true
-- class_name_1:
-    use_entities: true
-- class_name_2:
-    use_entities: true
-- class_name_3:
     use_entities: true
 - send_email:
     use_entities: true
@@ -81,8 +95,6 @@ intents:
     use_entities: true
 - nlu_fallback:
     use_entities: true
-- fee_stricture:
-    use_entities: true
 - year:
     use_entities: true
 - month:
@@ -96,6 +108,9 @@ intents:
 - Leave_go:
     use_entities: true
 entities:
+- break
+- name
+- uniform
 - message
 - subject1
 - email
@@ -106,6 +121,21 @@ entities:
 - subject
 - event
 slots:
+  break:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  name:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  uniform:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
   event:
     type: rasa.shared.core.slots.TextSlot
     initial_value: null
@@ -201,6 +231,14 @@ responses:
     text: Is there anything else I can help you with today?
   utter_show_options:
   - buttons:
+    - payload: /school_location
+      title: Location
+    - payload: /school_timings
+      title: School Timings
+    - payload: /get_uniform
+      title: School Uniform
+    - payload: /upcoming_events_ask
+      title: Events
     - payload: /report_card
       title: Report Card
     - payload: /Leave_application
@@ -227,9 +265,19 @@ responses:
       title: Academic calendar 2020-21
     - payload: /email_details
       title: Email IDS
+    - payload: /school_break
+      title: Holidays
+    - payload: /give_covid
+      title: Covid Cases🦠
     text: You can access and choose different sections from here!!
   utter_intro:
   - buttons:
+    - payload: /school_location
+      title: Location
+    - payload: /get_uniform
+      title: School Uniform
+    - payload: /upcoming_events_ask
+      title: Events
     - payload: /Leave_application
       title: Leave Note
     - payload: /send_email
@@ -256,7 +304,11 @@ responses:
       title: Academic calendar 2020-21
     - payload: /email_details
       title: Email IDS
-    text: Hi there!!👋 , Welcome to the School interactive plateform. What can I help you with today 😊
+    - payload: /school_break
+      title: Holidays
+    - payload: /give_covid
+      title: Covid Cases🦠
+    text: Hi there!!👋 , Welcome to the School's interactive plateform. What can I help you with today 😊
   utter_greet2:
   - text: Hi there!! , Welcome to the School interactive plateform. What can I help you with today?
   utter_academic_calendar:
@@ -265,11 +317,14 @@ responses:
   utter_which_month:
   - text: Hmm... I need to know which month you would like to see!
   - text: Can you tell me which month would you like to see in the calendar.
+  utter_school_location:
+  - image: https://i.imgur.com/RD2e0JC.jpeg
+    text: The xyz international school is situated in Ghubra street 1800
   utter_which_year:
   - buttons:
-    - payload: /year{{"year"="2021"}}
+    - payload: /year{{"year":"2021"}}
       title: '2021'
-    - payload: /year{{"year"="2022"}}
+    - payload: /year{{"year":"2022"}}
       title: '2022'
     text: Can you please mention the year ?
   utter_related_details_2:
@@ -281,6 +336,9 @@ responses:
     text: In need for related details ... Check this out!
   utter_doubtshoot:
   - text: ohh :( What can i do to help?
+  utter_school_timings:
+  - image: https://i.imgur.com/7VLEZMf.jpeg
+    text: Here are the timings from Kg to 12th. Due to online classes there might be changes in the time schedule ...
   utter_class_info:
   - text: Please mention you class and section.
   - text: What's your class and Section?
@@ -290,6 +348,17 @@ responses:
   - text: yea sure
   - text: okay,here is what i found
   - text: sure!
+  utter_found_uniform:
+  - text: Here is the {uniform}
+  utter_school_holiday:
+  - buttons:
+    - payload: /summer_break
+      title: Summer
+    - payload: /winter_break
+      title: Winter
+    text: Which holidays are you looking for ?
+  utter_reportcard_email:
+  - text: To send a copy to your email account please provide your email
   utter_greet:
   - text: Hey! How are you?
   utter_admission_details:
@@ -302,6 +371,13 @@ responses:
     - payload: /school_contact_details
       title: Contacts of school officials
     text: In need for related details ... Check this out!
+  utter_which_uniform:
+  - buttons:
+    - payload: /senior_uniform{{"uniform":"senior uniform"}}
+      title: Senior Uniform
+    - payload: /junior_uniform{{"uniform":"junior uniform"}}
+      title: Junior Uniform
+    text: Which uniform do you want!
   utter_related_details_3:
   - buttons:
     - payload: /event_contact
@@ -332,6 +408,8 @@ responses:
     text: Was that of much help?
   utter_happy:
   - text: Great, carry on!
+  - text: Byee, See you late!
+  - text: Bye👋
   utter_goodbye:
   - text: Sounds good to me
   - text: Thats Great!!
@@ -344,7 +422,22 @@ responses:
   utter_provide_id:
   - text: please provide the email id
   utter_provide_subject:
-  - text: Can you give the subject of your mail
+  - buttons:
+    - payload: /mail_id_subject{{"subject":"Participation"}}
+      title: Participation
+    - payload: /mail_id_subject{{"subject":"TC"}}
+      title: TC
+    - payload: /mail_id_subject{{"subject":"Complaint"}}
+      title: Complaint
+    - payload: /mail_id_subject{{"subject":"Recommendation"}}
+      title: Recommendations
+    - payload: /mail_id_subject{{"subject":"Donations"}}
+      title: Donations
+    - payload: /mail_id_subject{{"subject":"Delay"}}
+      title: Extention of the due date
+    - payload: /mail_id_subject{{"subject":"Scholarship"}}
+      title: Scholarship
+    text: Can you give the subject of your mail
   utter_provide_message:
   - text: what message do you want to deliever?
   utter_your_email_sent:
@@ -364,12 +457,15 @@ responses:
   utter_contact_who:
   - buttons:
     - payload: /contact_principal
-      title: The Principle
+      title: The Principal
     - payload: /other_contacts
       title: Other..
     text: Who do you want to contact
   utter_email_ids:
   - text: Here are the Email ids of the teachers of class {class}
+  utter_give_name:
+  - text: Please give you name
+  - text: Enter your name please
   utter_related_details_4:
   - buttons:
     - payload: /exam_syllabus
@@ -404,7 +500,18 @@ responses:
     text: You are hereby applying for a Leave Application!  DO YOU WANT TO PROCEED?
   utter_give_reason:
   - text: Please give a fare reason as to why are you applying for a leave for the body of the message.
+  utter_related_details_6:
+  - buttons:
+    - payload: /school_timings
+      title: School Timings
+    - payload: /academic_calendar
+      title: Calendar
+    text: You might wanna have a look at some relevent details...
 actions:
+- holidays
+- report_email_submit
+- school_uniform
+- covid_cases
 - leave_note_submit
 - show_event_contacts
 - show_event
@@ -441,10 +548,12 @@ actions:
 - class_form
 - action_submit
 - utter_end
-- intro_directions
 forms:
   class_form:
     required_slots:
+      break:
+      - entity: break
+        type: from_entity
       class:
       - entity: class
         type: from_entity
@@ -463,8 +572,17 @@ forms:
       month:
       - entity: month
         type: from_entity
+      name:
+      - entity: name
+        type: from_entity
       subject:
       - entity: subject
+        type: from_entity
+      subject1:
+      - entity: subject1
+        type: from_entity
+      uniform:
+      - entity: uniform
         type: from_entity
       year:
       - entity: year

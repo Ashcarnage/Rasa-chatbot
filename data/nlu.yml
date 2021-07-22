@@ -17,7 +17,6 @@ nlu:
     - good afternoon
 - intent: goodbye
   examples: |
-    - good afternoon
     - cu
     - good by
     - cee you later
@@ -95,6 +94,8 @@ nlu:
     - what is the timetable for class [12D](class) ?
     - can you give the timetable?
     - /seek_timetable_help
+    - show timtable
+    - show class timetable of [12C](class)
 - intent: class_name
   examples: |
     - I study in class [12A](class)
@@ -108,63 +109,6 @@ nlu:
     - im in class [12B](class)
     - im in class [12C](class)
     - im in class [12D](class)
-# - intent: class_name_2
-#   examples: |
-#     - [12A](class)
-#     - I study in class [12A](class)
-#     - I study in class [12B](class)
-#     - I study in class [12C](class)
-#     - I study in class [12D](class)
-#     - [12A](class)
-#     - [12B](class)
-#     - [12C](class)
-#     - [12D](class)
-#     - im in class [12A](class)
-#     - im in class [12B](class)
-#     - im in class [12C](class)
-#     - im in class [12D](class)
-# - intent: class_name_1
-#   examples: |
-#     - I study in class [12A](class)
-#     - I study in class [12B](class)
-#     - I study in class [12C](class)
-#     - I study in class [12D](class)
-#     - [12A](class)
-#     - [12B](class)
-#     - [12C](class)
-#     - [12D](class)
-#     - im in class [12A](class)
-#     - im in class [12B](class)
-#     - im in class [12C](class)
-#     - im in class [12D](class)
-# - intent: class_name_3
-#   examples: |
-#     - I study in class [12A](class)
-#     - I study in class [12B](class)
-#     - I study in class [12C](class)
-#     - I study in class [12D](class)
-#     - [12A](class)
-#     - [12B](class)
-#     - [12C](class)
-#     - [12D](class)
-#     - im in class [12A](class)
-#     - im in class [12B](class)
-#     - im in class [12C](class)
-#     - im in class [12D](class)
-# - intent: class_name_4
-#   examples: |
-#     - I study in class [12A](class)
-#     - I study in class [12B](class)
-#     - I study in class [12C](class)
-#     - I study in class [12D](class)
-#     - [12A](class)
-#     - [12B](class)
-#     - [12C](class)
-#     - [12D](class)
-#     - im in class [12A](class)
-#     - im in class [12B](class)
-#     - im in class [12C](class)
-#     - im in class [12D](class)
 - intent: show_school_vd
   examples: |
     - can you give an insight on XYZ
@@ -196,6 +140,27 @@ nlu:
 - intent: contact_details
   examples: |
     - /contact_details
+- intent: school_location
+  examples: |
+    - where is the school located
+    - school location
+    - give me the school's location
+    - where is the school
+    - can you give a map reference of the school
+- intent: school_break
+  examples: |
+    - When are the holidays
+    - holidays
+    - when is the [summer break]{"entity":"break"}
+    - when is the [winter break]{"entity":"break"}
+- intent: summer_break
+  examples: |
+    - [summer break]{"entity":"break"}
+
+- intent: winter_break
+  examples: |
+    - [winter break]{"entity":"break"}
+
 - intent: exam_date_sheet
   examples: |
     - please show me the exam dates
@@ -227,10 +192,10 @@ nlu:
     - [December](month)
 - intent: year
   examples: |
-    - [2021](year)
-    - The year is [2021](year)
-    - [2022](year)
-    - year [2022](year)
+    - [2021]{"entity":"year","value":"2021"}
+    - The year is [2021]{"entity":"year","value":"2021"}
+    - [2022]{"entity":"year","value":"2022"}
+    - year [2022]{"entity":"year","value":"2022"}
 - intent: show_intro
   examples: |
     - can you please show me the options again!
@@ -239,6 +204,20 @@ nlu:
     - what are the catagories
     - can you give the intro again
     - yea can you give a few options
+    - show me other options
+    - other options
+    - show intro
+- intent: get_uniform
+  examples: |
+    - can you please show me the school uniform
+    - what is the school uniform
+    - school uniform
+- intent: senior_uniform
+  examples: |
+    - [senior uniform](uniform)
+- intent: junior_uniform
+  examples: |
+    - [junior uniform](uniform)
 - intent: report_card
   examples: |
     - Please show my report card
@@ -338,7 +317,6 @@ nlu:
     - [maths](subject1) class [11](class) [final](exam) exam syllabus
     - exam syllabus
     - exam syllabus for [11B](class)
-
 - intent: other_contacts
   examples: |
     - give me all contact numbers
@@ -355,13 +333,20 @@ nlu:
     - the email is [principalxyzschool@gmail.com](email)
 - intent: mail_id_subject
   examples: |
-    - [participation in a competetion](subject)
-    - [participation](subject)
+    - [Participation in a competetion](subject)
+    - [Participation]{"entity":"subject"}
     - [To take a tc](subject)
+    - [TC]{"entity":"subject"}
+    - [Recommendation]{"entity":"subject"}
+    - [Scholarship]{"entity":"subject"}
+    - [Delay]{"entity":"subject"}
+    - [Complaint]{"entity":"subject"}
+    - [Donations]{"entity":"subject"}
+    - [Competition]{"entity":"subject"}
 - intent: mail_id_message
   examples: |
     - [Hello this is a meesage from the xyz chatbot](message)
-    - [I want to take part in the upcoming competetion](message)
+    - [I want to take part in the upcoming competition](message)
 - intent: leave_id_message
   examples: |
     - [Im having sever cough and cold and so i will not be able to attend school for 2 days](message)
@@ -380,13 +365,11 @@ nlu:
     - email now
     - email principal
     - lets get on with the email
-
 - intent: Leave_go
   examples: |
     - send leave note now
     - please send the leave letter
     - email leave note now
-
 - intent: Leave_application
   examples: |
     - I want to write a leave application
@@ -394,8 +377,12 @@ nlu:
     - leave note
     - leave application
     - i want to take a leave
-
-
+- intent: give_covid
+  examples: |
+    - Can i have the number of covid cases
+    - what are the number of covid cases
+    - covid 19
+    - what are the cases
 - intent: upcoming_events_ask
   examples: |
     - could you tell me more about the upcoming events?
@@ -409,6 +396,20 @@ nlu:
     - [fest](event)
     - [quiz](event)
     - [art](event)
+- intent: register_name
+  examples: |
+    - My name is [Jhon](name)
+    - Im [Jhon](name)
+    - [Jhon](name)
+    - [Tom](name)
+    - [A](name)
+    - [B](name)
+- intent: school_timings
+  examples: |
+    - what are the school timings?
+    - School timings
+    - can you give the school timings
+    - the timings
 - intent: event_contact
   examples: |
     - who can i contact to know more about [mun](event)?
@@ -438,6 +439,11 @@ nlu:
 - synonym: phy
   examples: |
     - physics
+- synonym: covid
+  examples: |
+    - Corona virus
+    - covid 19
+    - corona
 - synonym: maths
   examples: |
     - mathematics
@@ -453,3 +459,48 @@ nlu:
     - computer science
     - compsci
     - comp science
+- synonym: Hello this is a meesage from the xyz chatbot
+  examples: |
+    - This is a message from the xyz chatbot
+    - This is the xyz chatbot
+    - This is a test message
+- synonym: I want to take part in the upcoming competition
+  examples: |
+    - I would like to take part in the upcoming competition
+    - This is to inform you that i want to take part in the upcoming competition
+    - I would like to take oart in the upcoming competition. Could you please give me the details for the same.
+    - I would like to take part in the forthcoming swimming competition
+    - can i take part in the upcoming competition
+    - To take part in a competition
+- synonym: Im having sever cough and cold and so i will not be able to attend school for 2 days
+  examples: |
+    - Due to sever cough and cold, I will not be able to attend school for the next 2 days.
+    - Im an extreamly sick. could you please give an excuse for my absence.
+    - I feel very sick so i will not be able to attend school.
+    - I have cough and cold
+    - Cough and cold
+- synonym: Due to the rapid spread of the covid 19 virus, i will be able to come for schooling for atleast a weeks time
+  examples: |
+    - In order to seek precaution, i will not be attending school for the next few weeks
+    - As the covid 19 cases have risen, i will not attend school for a few days
+    - The covid cases have significantly risen so to be on the safe side , i will not be attending school for a few days
+    - Due to covid i will not be coming
+    - covid
+- synonym: Since im having a competative exam tomorrow i will not be coming
+  examples: |
+    - I have an exam tomorrow
+    - upcoming exam
+    - i will not be coming because the exams are nearing
+    - Due to exams
+- regex: message
+  examples: |
+    - ^Dear.*\.$
+    - ^dear.*\.$
+    - ^Dear.*\?$
+    - ^dear.*\?$
+    - .*\.$
+    - .*\?$
+    - .* $
+- regex: email
+  examples: |
+    - .*\.com$
