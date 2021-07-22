@@ -1,0 +1,15 @@
+.content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+.text-muted a {
+    color: black;
+}
+
+.text-muted a:hover {
+    color: rgba(0, 136, 139, 0.8);
+}
