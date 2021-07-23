@@ -93,7 +93,6 @@ stories:
   - action: utter_feedback
   - intent: deny
   - action: utter_end
-
 - story: fees_terminate_2
   steps:
   - intent: fee_structure
@@ -111,7 +110,6 @@ stories:
   - action: utter_feedback
   - intent: show_intro
   - action: utter_show_options
-
 - story: calendar_happy
   steps:
   - intent: greet
@@ -179,7 +177,6 @@ stories:
   - intent: school_vd
   - action: school_vd
   - action: utter_did_that_help
-
 - story: Exam syllabus happy
   steps:
   - intent: greet
@@ -200,15 +197,14 @@ stories:
   - action: utter_which_subject
   - intent: exam_syllabus
     entities:
-    - subject: Maths
+    - subject1: Maths
   - slot_was_set:
-    - subject: Maths
+    - subject1: Maths
   - action: show_exam
   - action: utter_did_that_help
   - intent: affirm
   - action: utter_goodbye
   - action: utter_feedback
-
 - story: Exam Syllabus - op
   steps:
   - intent: exam_syllabus
@@ -227,9 +223,9 @@ stories:
   - action: utter_which_subject
   - intent: exam_syllabus
     entities:
-    - subject: Maths
+    - subject1: Maths
   - slot_was_set:
-    - subject: Maths
+    - subject1: Maths
   - action: show_exam
   - action: utter_did_that_help
   - intent: affirm
@@ -237,9 +233,10 @@ stories:
   - action: utter_feedback
   - intent: show_intro
   - action: utter_show_options
-
 - story: Exam syllabus sad
   steps:
+  - intent: greet
+  - action: show_intro
   - intent: exam_syllabus
   - action: utter_class_info
   - intent: class_name
@@ -256,9 +253,9 @@ stories:
   - action: utter_which_subject
   - intent: exam_syllabus
     entities:
-    - subject: Maths
+    - subject1: Maths
   - slot_was_set:
-    - subject: Maths
+    - subject1: Maths
   - action: show_exam
   - action: utter_did_that_help
   - intent: affirm
@@ -286,9 +283,9 @@ stories:
   - action: utter_which_subject
   - intent: exam_syllabus
     entities:
-    - subject: Maths
+    - subject1: Maths
   - slot_was_set:
-    - subject: Maths
+    - subject1: Maths
   - action: show_exam
   - action: utter_did_that_help
   - intent: affirm
@@ -489,7 +486,6 @@ stories:
   - action: email_submit
   - action: utter_your_email_sent
   - action: utter_related_details_4
-  - intent: exam_syllabus
 - story: Report card
   steps:
   - intent: greet
@@ -509,15 +505,31 @@ stories:
     - name: Jhon
   - action: show_report_card
   - action: utter_reportcard_email
-  - intent: mail_id_email
+  - intent: report_mail_id_email
   - action: report_email_submit
   - action: utter_your_email_sent
   - action: utter_related_details_4
-  - intent: exam_syllabus
 - story: event path
   steps:
   - intent: greet
   - action: utter_intro
+  - intent: upcoming_events_ask
+  - action: utter_event
+  - intent: upcoming_events
+    entities:
+    - event: mun
+  - slot_was_set:
+    - event: mun
+  - action: show_event
+  - action: utter_related_details_3
+  - intent: event_contact
+  - action: utter_event_contact
+  - action: show_event_contacts
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_doubtshoot
+- story: event path-op
+  steps:
   - intent: upcoming_events_ask
   - action: utter_event
   - intent: upcoming_events
@@ -568,7 +580,6 @@ stories:
   - intent: affirm
   - action: utter_goodbye
   - action: utter_feedback
-
 - story: Leave Letter_op
   steps:
   - intent: Leave_application
@@ -585,7 +596,6 @@ stories:
   - intent: affirm
   - action: utter_goodbye
   - action: utter_feedback
-
 - story: Leave Letter- sad
   steps:
   - intent: greet
@@ -597,7 +607,6 @@ stories:
   - action: utter_feedback
   - intent: deny
   - action: utter_end
-
 - story: covid cases
   steps:
   - intent: greet
@@ -607,7 +616,6 @@ stories:
   - action: utter_feedback
   - intent: deny
   - action: utter_end
-
 - story: covid cases -diff
   steps:
   - intent: greet
@@ -617,7 +625,6 @@ stories:
   - action: utter_feedback
   - intent: show_intro
   - action: utter_show_options
-
 - story: Uniform-senior
   steps:
   - intent: greet
@@ -631,7 +638,6 @@ stories:
     - uniform: senior uniform
   - action: school_uniform
   - action: utter_related_details_2
-
 - story: Uniform-junior
   steps:
   - intent: greet
@@ -645,7 +651,6 @@ stories:
     - uniform: junior uniform
   - action: school_uniform
   - action: utter_related_details_2
-
 - story: School timings happy
   steps:
   - intent: greet
@@ -656,7 +661,6 @@ stories:
   - intent: affirm
   - action: utter_goodbye
   - action: utter_feedback
-
 - story: School timings sad
   steps:
   - intent: greet
@@ -666,7 +670,6 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_doubtshoot
-
 - story: School timings op
   steps:
   - intent: school_timings
@@ -674,7 +677,6 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_doubtshoot
-
 - story: School location-diff
   steps:
   - intent: greet
@@ -684,7 +686,6 @@ stories:
   - action: utter_feedback
   - intent: show_intro
   - action: utter_show_options
-
 - story: School location-deny
   steps:
   - intent: greet
@@ -694,7 +695,6 @@ stories:
   - action: utter_feedback
   - intent: deny
   - action: utter_end
-
 - story: School location
   steps:
   - intent: school_location
@@ -702,7 +702,6 @@ stories:
   - action: utter_feedback
   - intent: deny
   - action: utter_end
-
 - story: School_holidays
   steps:
   - intent: greet
@@ -716,4 +715,65 @@ stories:
     - break: summer break
   - action: holidays
   - action: utter_related_details_6
-  
+- story: Story from Conversation ID dd06402102924fa393dd5afd367e9fb1
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: exam_syllabus
+  - action: utter_class_info
+  - intent: class_name
+    entities:
+    - class: 12A
+  - slot_was_set:
+    - class: 12A
+  - action: utter_exam
+  - intent: exam_syllabus
+    entities:
+    - exam: final
+  - slot_was_set:
+    - exam: final
+  - action: utter_which_subject
+  - intent: exam_syllabus
+    entities:
+    - subject1: maths
+  - slot_was_set:
+    - subject1: maths
+  - action: show_exam
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
+  - action: utter_feedback
+- story: contact-principal_2
+  steps:
+  - intent: greet
+  - action: utter_intro
+  - intent: school_contact_details
+  - action: utter_contact_who
+  - intent: contact_principal
+  - action: utter_principal_email
+  - action: utter_message_now
+  - intent: principal_go
+  - action: utter_provide_id
+  - intent: mail_id_email
+    entities:
+    - email: xyzinternational.s@gmail.com
+  - slot_was_set:
+    - email: xyzinternational.s@gmail.com
+  - action: utter_provide_subject
+  - intent: mail_id_subject
+    entities:
+    - subject: Participation
+  - slot_was_set:
+    - subject: Participation
+  - action: utter_provide_message
+  - intent: mail_id_message
+    entities:
+    - message: I want to participate .
+  - slot_was_set:
+    - message: I want to participate .
+  - action: email_submit
+  - action: utter_your_email_sent
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_goodbye
+  - action: utter_feedback

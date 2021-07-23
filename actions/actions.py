@@ -111,23 +111,26 @@ class ExamSyllabus(Action):
         cls = tracker.get_slot("class")
         exam = tracker.get_slot("exam")
         sub = tracker.get_slot("subject1")
+        print("subject = ",sub)
 
+        L=["final","halfyearly","preboard"]
         L1 = ["12A","12B","12C","12D","11A","11B","11C","11D","10A","10B","10C","10D","9A","9B","9C","9D","8A","8B","8C","8D","7A","7B","7C","7D","6A","6B","6C","6D","5A","5B","5C","5D","4A","4B","4C","4D","3A","3B","3C","3D","2A","2B","2C","2D","1A","1B","1C","1D"]
         D = {"maths":"https://i.imgur.com/h4Hcf6Z.jpeg","phy":"https://i.imgur.com/rcV7Hs2.jpeg","chem":"https://i.imgur.com/osH6KCz.jpeg","eng":"https://i.imgur.com/Aht65uG.jpeg","cs":"https://i.imgur.com/Uy3yrlm.jpeg"}
         D1 = {"maths":"https://i.imgur.com/N0kW8MH.jpeg","phy":"https://i.imgur.com/xVt20wA.jpeg","chem":"https://i.imgur.com/V4VvbYZ.jpeg","eng":"https://i.imgur.com/IpPgSkG.jpeg","cs":"https://i.imgur.com/rLh98Qj.jpeg"}
-        if cls in L1:
-            if exam == "final":
-                for i in D.keys():
-                    if i==sub:
-                        val = D[i]
-                        print(val)
-                        dispatcher.utter_message(image=val)
-            elif exam == "periodic":
-                for j in D1.keys():
-                    if j==sub:
-                        val = D1[j]
-                        print(val)
-                        dispatcher.utter_message(image=val)
+        if exam in L:
+            for i in D.keys():
+                if i==sub:
+                    val1 = D[i]
+                    print("The value of val1 is")
+                    print(val1)
+                    dispatcher.utter_message(image=val1)
+            
+        elif exam == "periodic":
+            for j in D1.keys():
+                if j==sub:
+                    val2 = D1[j]
+                    print(val2)
+                    dispatcher.utter_message(image=val2)
 
         return[]
 
@@ -470,7 +473,7 @@ class SchoolUniform(Action):
         D={"senior uniform":"https://i.imgur.com/xZuEwVf.jpeg","junior uniform":"https://i.imgur.com/SSN8Yj1.jpeg"}
         for dict in D.keys():
             print(name)
-            if name.lower()==dict:
+            if name==dict:
                 val=D[dict]
                 print(val)
                 dispatcher.utter_message(responce='utter_found_uniform',image=val) 
@@ -482,7 +485,7 @@ class SchoolHolidays(Action):
         D={"summer break":"https://i.imgur.com/1UGk0jd.jpeg","winter break":"https://i.imgur.com/iEU89bG.jpeg"}
         for dict in D.keys():
             print(name)
-            if name.lower()==dict:
+            if name==dict:
                 val=D[dict]
                 print(val)
                 dispatcher.utter_message(text="This is the {} schedule".format(name),image=val)   

@@ -5,6 +5,8 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
+- report_mail_id_email:
+    use_entities: true
 - winter_break:
     use_entities: true
 - school_break:
@@ -102,8 +104,6 @@ intents:
 - school_vd:
     use_entities: true
 - school_contact_details:
-    use_entities: true
-- class_name_4:
     use_entities: true
 - Leave_go:
     use_entities: true
@@ -352,9 +352,9 @@ responses:
   - text: Here is the {uniform}
   utter_school_holiday:
   - buttons:
-    - payload: /summer_break
+    - payload: /summer_break{{"break":"summer break"}}
       title: Summer
-    - payload: /winter_break
+    - payload: /winter_break{{"break":"winter break"}}
       title: Winter
     text: Which holidays are you looking for ?
   utter_reportcard_email:
@@ -464,8 +464,8 @@ responses:
   utter_email_ids:
   - text: Here are the Email ids of the teachers of class {class}
   utter_give_name:
-  - text: Please give you name
-  - text: Enter your name please
+  - text: Please give your name..(please enter an underscore after your name)
+  - text: Enter your name please..(please enter an underscore after your name)
   utter_related_details_4:
   - buttons:
     - payload: /exam_syllabus
@@ -548,6 +548,7 @@ actions:
 - class_form
 - action_submit
 - utter_end
+- show_intro
 forms:
   class_form:
     required_slots:

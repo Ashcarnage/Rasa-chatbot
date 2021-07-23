@@ -156,11 +156,9 @@ nlu:
 - intent: summer_break
   examples: |
     - [summer break]{"entity":"break"}
-
 - intent: winter_break
   examples: |
     - [winter break]{"entity":"break"}
-
 - intent: exam_date_sheet
   examples: |
     - please show me the exam dates
@@ -192,10 +190,10 @@ nlu:
     - [December](month)
 - intent: year
   examples: |
-    - [2021]{"entity":"year","value":"2021"}
-    - The year is [2021]{"entity":"year","value":"2021"}
-    - [2022]{"entity":"year","value":"2022"}
-    - year [2022]{"entity":"year","value":"2022"}
+    - [2021](year)
+    - The year is [2021](year)
+    - [2022](year)
+    - year [2022](year)
 - intent: show_intro
   examples: |
     - can you please show me the options again!
@@ -329,20 +327,23 @@ nlu:
 - intent: mail_id_email
   examples: |
     - [xyzinternational@gmail.com](email)
-    - [bhakat2004@gmail.com](email)
     - the email is [principalxyzschool@gmail.com](email)
+- intent: report_mail_id_email
+  examples: |
+    - [xyz@gmail.com](email)
+    - [principalxyzschool@gmail.com](email)
 - intent: mail_id_subject
   examples: |
     - [Participation in a competetion](subject)
-    - [Participation]{"entity":"subject"}
+    - [Participation](subject)
     - [To take a tc](subject)
-    - [TC]{"entity":"subject"}
-    - [Recommendation]{"entity":"subject"}
-    - [Scholarship]{"entity":"subject"}
-    - [Delay]{"entity":"subject"}
-    - [Complaint]{"entity":"subject"}
-    - [Donations]{"entity":"subject"}
-    - [Competition]{"entity":"subject"}
+    - [TC](subject)
+    - [Recommendation](subject)
+    - [Scholarship](subject)
+    - [Delay](subject)
+    - [Complaint](subject)
+    - [Donations](subject)
+    - [Competition](subject)
 - intent: mail_id_message
   examples: |
     - [Hello this is a meesage from the xyz chatbot](message)
@@ -404,6 +405,11 @@ nlu:
     - [Tom](name)
     - [A](name)
     - [B](name)
+    - [C](name)
+    - [jhon](name)
+    - [tom](name)
+    - [Tom](name)
+
 - intent: school_timings
   examples: |
     - what are the school timings?
@@ -492,15 +498,17 @@ nlu:
     - upcoming exam
     - i will not be coming because the exams are nearing
     - Due to exams
-- regex: message
-  examples: |
-    - ^Dear.*\.$
-    - ^dear.*\.$
-    - ^Dear.*\?$
-    - ^dear.*\?$
-    - .*\.$
-    - .*\?$
-    - .* $
 - regex: email
   examples: |
     - .*\.com$
+- regex: message
+  examples: |
+    - .*\.$
+    - .*\?$
+    - ^Dear.*\.$
+    - ^Dear.*\?$
+    - ^dear.*\.$
+    - ^dear.*\?$
+- regex: name
+  examples: |
+    - .*\_$
